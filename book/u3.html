@@ -1,0 +1,839 @@
+<!DOCTYPE HTML>
+<html lang="en" class="light sidebar-visible" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Unit 1 - Intro to Blender II</title>
+
+
+        <!-- Custom HTML head -->
+
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="toc.js"></script>
+    </head>
+    <body>
+    <div id="body-container">
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            const html = document.documentElement;
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add("js");
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="toc.html"></iframe>
+            </noscript>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Intro to Blender II</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="chapter-1"><a class="header" href="#chapter-1">Chapter 1</a></h1>
+<h1 id="session-3"><a class="header" href="#session-3">Session #3</a></h1>
+<h2 id="course-intro"><a class="header" href="#course-intro">Course Intro</a></h2>
+<p>In this second half of Intro to Blender, we will follow a lecture format with demonstrations. I strongly encourage you to actively participate by trying to mimic the demos as they are presented. This hands-on approach will enhance your learning experience and allow you to gain practical skills by actively engaging with the material.</p>
+<p>Given the extensive amount of concepts to cover during these three hours, it is highly recommended that you thoroughly review the notes before the next hands-on session. This review will help solidify your understanding of the material and prepare you for active participation in the upcoming session.</p>
+<h2 id="topics-covered-in-the-previous-two-sessions"><a class="header" href="#topics-covered-in-the-previous-two-sessions">Topics covered in the previous two sessions</a></h2>
+<ul>
+<li><a href="https://trevorsmale.github.io/itb/">Part 1</a></li>
+</ul>
+<h2 id="modeling-workshop-session"><a class="header" href="#modeling-workshop-session">Modeling Workshop Session</a></h2>
+<p>In the second half of this introductory course, we will focus on modeling more complex shapes, utilizing modifiers to create natural distortions, and generating sophisticated generative textures. The culmination of these topics will be an aesthetically pleasing rendering of a wine bottle.</p>
+<p><img src="img/WineBottleRender.png" alt="Wireframe of Wine Bottle Model" title="Wireframe of Wine Bottle Model" /></p>
+<h2 id="review-of-syllabus-10"><a class="header" href="#review-of-syllabus-10">Review of syllabus (10)</a></h2>
+<h2 id="concepts-15"><a class="header" href="#concepts-15">Concepts (15)</a></h2>
+<ul>
+<li>Subdivision modeling</li>
+<li>Modifiers</li>
+<li>Texturing</li>
+<li>Procedural Textures</li>
+<li>Mapped Textures</li>
+</ul>
+<h2 id="todays-session-10"><a class="header" href="#todays-session-10">Today's Session (10)</a></h2>
+<p><img src="img/WineBottleWire.png" alt="Wireframe of Wine Bottle Model" title="Wireframe of Wine Bottle Model" /></p>
+<h1 id="blender-class-booklet--shortcut-centric-approach"><a class="header" href="#blender-class-booklet--shortcut-centric-approach">Blender Class Booklet – Shortcut-Centric Approach</a></h1>
+<blockquote>
+<p><strong>Note:</strong> This booklet prioritizes using keyboard shortcuts first, followed by the corresponding GUI (Graphical User Interface) approach.</p>
+<p>For more details on Blender’s history and capabilities, see <a href="https://en.wikipedia.org/wiki/Blender_(software)">Blender (software)</a>.</p>
+</blockquote>
+<hr />
+<h2 id="core-concepts"><a class="header" href="#core-concepts">Core Concepts</a></h2>
+<p>Below are several essential concepts we’ll use throughout this booklet. Each concept highlights shortcuts and the corresponding menu paths.</p>
+<ol>
+<li>
+<p><strong>Subdivision Modeling</strong></p>
+<ul>
+<li><strong>Shortcut Method:</strong>
+<ul>
+<li>In <code>Object Mode</code>, press <kbd>Ctrl+2</kbd> (or <kbd>Ctrl+1</kbd>, <kbd>Ctrl+3</kbd>, etc.) to automatically add a Subdivision Surface Modifier with a chosen subdivision level.</li>
+</ul>
+</li>
+<li><strong>GUI Method:</strong>
+<ul>
+<li>Select your object, then go to <code>Properties &gt; Modifiers &gt; Add Modifier &gt; Subdivision Surface</code>.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Solidify Modifier</strong></p>
+<ul>
+<li><strong>Shortcut Method:</strong>
+<ul>
+<li>There’s no direct one-key shortcut to add a Solidify Modifier. However, you can quickly open the Add Modifier menu by pressing <kbd>Ctrl+Tab</kbd> in newer Blender versions (if configured) or simply do the next step:</li>
+</ul>
+</li>
+<li><strong>GUI Method:</strong>
+<ul>
+<li>Select your object, go to <code>Properties &gt; Modifiers &gt; Add Modifier &gt; Solidify</code>, then adjust the <code>Thickness</code>.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Displacement Modifier</strong></p>
+<ul>
+<li><strong>Shortcut Method:</strong>
+<ul>
+<li>Similarly, no default direct shortcut. Recommended approach is to use <kbd>Shift+A</kbd> in the Texture context to quickly add a texture, then reference it in the Displace Modifier.</li>
+</ul>
+</li>
+<li><strong>GUI Method:</strong>
+<ul>
+<li>With your object selected, go to <code>Properties &gt; Modifiers &gt; Add Modifier &gt; Displace</code>. Assign or create a new texture under <code>Texture &gt; New</code>.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Shrinkwrap Modifier</strong></p>
+<ul>
+<li><strong>Shortcut Method:</strong>
+<ul>
+<li>No direct key. Add via quick menu <kbd>F3</kbd> to open the search bar, type <code>Shrinkwrap</code>.</li>
+</ul>
+</li>
+<li><strong>GUI Method:</strong>
+<ul>
+<li>Select your object, then choose <code>Properties &gt; Modifiers &gt; Add Modifier &gt; Shrinkwrap</code>. Pick the target object to wrap onto.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Modifier Application</strong></p>
+<ul>
+<li><strong>Shortcut Method:</strong>
+<ul>
+<li>Select the object, press <kbd>F3</kbd>, type <code>Apply All Modifiers</code>.</li>
+</ul>
+</li>
+<li><strong>GUI Method:</strong>
+<ul>
+<li>Go to <code>Properties &gt; Modifiers</code> and click the <code>Apply</code> button on each modifier.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Mesh Cleanup</strong></p>
+<ul>
+<li><strong>Shortcut Method:</strong>
+<ul>
+<li>In <code>Edit Mode</code>, press <kbd>F3</kbd> and type <code>Merge by Distance</code> or <code>Delete Loose</code> or <code>Limited Dissolve</code>.</li>
+</ul>
+</li>
+<li><strong>GUI Method:</strong>
+<ul>
+<li>In <code>Edit Mode</code>, go to <code>Mesh &gt; Clean Up</code> and choose the required cleanup operation.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Activating and Utilizing Add-ons</strong></p>
+<ul>
+<li><strong>Shortcut Method:</strong>
+<ul>
+<li>In newer Blender versions, press <kbd>F4</kbd>, choose <code>Preferences</code>, and go to the Add-ons tab.</li>
+</ul>
+</li>
+<li><strong>GUI Method:</strong>
+<ul>
+<li>Go to <code>Edit &gt; Preferences &gt; Add-ons</code>. Check the box next to the desired add-on.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Use of Proportional Editing</strong></p>
+<ul>
+<li><strong>Shortcut Method:</strong>
+<ul>
+<li>In <code>Edit Mode</code>, press <kbd>O</kbd> to toggle Proportional Editing on/off.</li>
+<li>Scroll the Mouse Wheel to adjust the falloff radius while transforming.</li>
+</ul>
+</li>
+<li><strong>GUI Method:</strong>
+<ul>
+<li>In <code>Edit Mode</code>, enable Proportional Editing by clicking the small circle icon on the 3D Viewport header.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Creating and Modifying Curves</strong></p>
+<ul>
+<li><strong>Shortcut Method:</strong>
+<ul>
+<li>Press <kbd>Shift+A</kbd> and select <code>Curve &gt; Bezier</code> (or <code>Curve &gt; NURBS</code>).</li>
+<li>To modify, press <kbd>Tab</kbd> to enter <code>Edit Mode</code>, and use <kbd>G</kbd> (move), <kbd>R</kbd> (rotate), <kbd>S</kbd> (scale).</li>
+</ul>
+</li>
+<li><strong>GUI Method:</strong>
+<ul>
+<li>Go to <code>Add &gt; Curve &gt; Bezier/NURBS</code>. Then switch to <code>Edit Mode</code> via <code>Object &gt; Mode &gt; Edit Mode</code>.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<hr />
+<h2 id="activating-add-ons-5-minutes"><a class="header" href="#activating-add-ons-5-minutes">Activating Add-ons (5 minutes)</a></h2>
+<ol>
+<li>
+<p><strong>Activating the Loop Tools Add-on</strong></p>
+<ul>
+<li><strong>Shortcut Method:</strong>
+<ul>
+<li>Press <kbd>F4</kbd> (or <kbd>Esc</kbd> in some versions) to open the quick menu, then select <code>Preferences</code>. Go to <code>Add-ons</code>, search for <code>Loop Tools</code>, and check it.</li>
+</ul>
+</li>
+<li><strong>GUI Method:</strong>
+<ul>
+<li><code>Edit &gt; Preferences &gt; Add-ons</code>, search <code>Loop Tools</code>, and enable it.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Activating the Node Wrangler Add-on</strong></p>
+<ul>
+<li><strong>Shortcut Method:</strong>
+<ul>
+<li>Same approach: <kbd>F4</kbd>, <code>Preferences &gt; Add-ons</code>, search <code>Node Wrangler</code>, enable.</li>
+</ul>
+</li>
+<li><strong>GUI Method:</strong>
+<ul>
+<li><code>Edit &gt; Preferences &gt; Add-ons</code>, search <code>Node Wrangler</code>, enable.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<hr />
+<h2 id="setting-up-our-user-interface-10-minutes"><a class="header" href="#setting-up-our-user-interface-10-minutes">Setting up our User Interface (10 minutes)</a></h2>
+<ol>
+<li>
+<p><strong>Creating Window Splits</strong></p>
+<ul>
+<li><strong>Shortcut Method:</strong>
+<ul>
+<li>Hover the mouse near a window boundary until a double arrow appears, then <kbd>Right-Click</kbd> and choose <code>Split Area</code>.</li>
+</ul>
+</li>
+<li><strong>GUI Method:</strong>
+<ul>
+<li>Click and drag from a corner of a window to split; or from a split line, <code>Right-Click &gt; Join Areas</code>.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Creating Workspaces</strong></p>
+<ul>
+<li><strong>Shortcut Method:</strong>
+<ul>
+<li>Use the <code>+</code> (plus icon) on the topmost bar in Blender’s interface, then select a workspace type.</li>
+</ul>
+</li>
+<li><strong>GUI Method:</strong>
+<ul>
+<li><code>Window &gt; New Workspace</code>, or simply click <code>+</code> in the workspace tabs.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Turning on Pack External Resources</strong></p>
+<ul>
+<li><strong>Shortcut Method:</strong>
+<ul>
+<li>Press <kbd>F3</kbd> and type <code>Pack Resources</code>.</li>
+</ul>
+</li>
+<li><strong>GUI Method:</strong>
+<ul>
+<li>Go to <code>File &gt; External Data &gt; Pack Resources</code>.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<hr />
+<h2 id="creating-the-bottle-45-minutes"><a class="header" href="#creating-the-bottle-45-minutes">Creating The Bottle (45 minutes)</a></h2>
+<ol>
+<li>
+<p><strong>Creating a Cylinder</strong></p>
+<ul>
+<li><strong>Shortcut Method:</strong>
+<ul>
+<li><kbd>Shift+A</kbd> → <code>Mesh &gt; Cylinder</code>.</li>
+</ul>
+</li>
+<li><strong>GUI Method:</strong>
+<ul>
+<li><code>Add &gt; Mesh &gt; Cylinder</code>.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Deleting Cylinder Ends</strong></p>
+<ul>
+<li><strong>Shortcut Method:</strong>
+<ul>
+<li>In <code>Edit Mode</code>, press <kbd>3</kbd> (Face Select Mode), select top and bottom faces, press <kbd>X</kbd> → <code>Faces</code>.</li>
+</ul>
+</li>
+<li><strong>GUI Method:</strong>
+<ul>
+<li>In <code>Edit Mode</code>, select faces, then go to <code>Mesh &gt; Delete &gt; Faces</code>.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Resizing the Cylinder</strong></p>
+<ul>
+<li><strong>Shortcut Method:</strong>
+<ul>
+<li>Press <kbd>S</kbd> (scale), optionally constrain by <kbd>Z</kbd> or <kbd>X</kbd>/<kbd>Y</kbd>.</li>
+</ul>
+</li>
+<li><strong>GUI Method:</strong>
+<ul>
+<li><code>Object &gt; Transform &gt; Scale</code>, or in the <code>N</code> panel, adjust <code>Scale</code> numerically.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Extruding the Cylinder</strong></p>
+<ul>
+<li><strong>Shortcut Method:</strong>
+<ul>
+<li><kbd>E</kbd> in <code>Edit Mode</code>.</li>
+</ul>
+</li>
+<li><strong>GUI Method:</strong>
+<ul>
+<li><code>Mesh &gt; Extrude &gt; Extrude Region</code>.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Resizing Loops</strong></p>
+<ul>
+<li><strong>Shortcut Method:</strong>
+<ul>
+<li>Select an edge loop with <kbd>Alt+Left Click</kbd>, press <kbd>S</kbd>.</li>
+</ul>
+</li>
+<li><strong>GUI Method:</strong>
+<ul>
+<li><code>Select &gt; Select Loops &gt; Edge Loop</code> then <code>Scale</code>.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Applying the Subdivision Modifier</strong></p>
+<ul>
+<li><strong>Shortcut Method:</strong>
+<ul>
+<li>Press <kbd>Ctrl+2</kbd> to add, then <kbd>F3</kbd> → <code>Apply All Modifiers</code>.</li>
+</ul>
+</li>
+<li><strong>GUI Method:</strong>
+<ul>
+<li><code>Properties &gt; Modifiers &gt; Add Modifier &gt; Subdivision Surface</code>, adjust levels, click <code>Apply</code>.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Adding a Solidify Modifier</strong></p>
+<ul>
+<li><strong>Shortcut Method:</strong>
+<ul>
+<li><kbd>F3</kbd> → <code>Add Solidify Modifier</code>.</li>
+</ul>
+</li>
+<li><strong>GUI Method:</strong>
+<ul>
+<li><code>Properties &gt; Modifiers &gt; Add Modifier &gt; Solidify</code>.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Applying Both Modifiers</strong></p>
+<ul>
+<li><strong>Shortcut Method:</strong>
+<ul>
+<li><kbd>F3</kbd> → <code>Apply All Modifiers</code>.</li>
+</ul>
+</li>
+<li><strong>GUI Method:</strong>
+<ul>
+<li><code>Properties &gt; Modifiers</code>, click <code>Apply</code> on each.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Editing Mesh with Loop Tools</strong></p>
+<ul>
+<li><strong>Shortcut Method:</strong>
+<ul>
+<li>In <code>Edit Mode</code>, select a loop or multiple edges, <kbd>W</kbd> → <code>LoopTools &gt; Circle</code> (or other function).</li>
+</ul>
+</li>
+<li><strong>GUI Method:</strong>
+<ul>
+<li>In <code>Edit Mode</code>, <code>Right-Click &gt; LoopTools</code> (if the add-on is enabled).</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Proportionally Editing the Bottom</strong></p>
+<ul>
+<li><strong>Shortcut Method:</strong>
+<ul>
+<li>Press <kbd>O</kbd> to enable Proportional Editing, then <kbd>G</kbd> to move the bottom vertices. Mouse wheel adjusts radius.</li>
+</ul>
+</li>
+<li><strong>GUI Method:</strong>
+<ul>
+<li>Click the Proportional Editing icon in the 3D Viewport header, then move as desired.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Filling an Open Hole</strong></p>
+<ul>
+<li><strong>Shortcut Method:</strong>
+<ul>
+<li>In <code>Edit Mode</code>, select the open edge loop, press <kbd>F</kbd> to fill.</li>
+</ul>
+</li>
+<li><strong>GUI Method:</strong>
+<ul>
+<li><code>Mesh &gt; Face &gt; Make Edge/Face</code>.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Adding and Adjusting Loop-Cuts</strong></p>
+<ul>
+<li><strong>Shortcut Method:</strong>
+<ul>
+<li><kbd>Ctrl+R</kbd> to initiate a loop cut, then move/scroll to place it.</li>
+</ul>
+</li>
+<li><strong>GUI Method:</strong>
+<ul>
+<li><code>Mesh &gt; Insert &gt; Edge Loop</code>.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Applying a Displacement Modifier</strong></p>
+<ul>
+<li><strong>Shortcut Method:</strong>
+<ul>
+<li>Press <kbd>F3</kbd> → <code>Add Displace Modifier</code>.</li>
+</ul>
+</li>
+<li><strong>GUI Method:</strong>
+<ul>
+<li><code>Properties &gt; Modifiers &gt; Add Modifier &gt; Displace</code>. Adjust texture and strength.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Using a Texture with the Modifier</strong></p>
+<ul>
+<li><strong>Shortcut Method:</strong>
+<ul>
+<li>From the Displace Modifier panel, press <kbd>New</kbd> next to <code>Texture</code>, then <kbd>F3</kbd> and type <code>Open Texture</code> if you have a file.</li>
+</ul>
+</li>
+<li><strong>GUI Method:</strong>
+<ul>
+<li><code>Properties &gt; Modifiers &gt; Displace &gt; Texture &gt; New</code>. Then in the <code>Texture Properties</code> tab, choose <code>Image or Movie</code> and load your texture.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<hr />
+<h1 id="break-15-minutes"><a class="header" href="#break-15-minutes">Break (15 minutes)</a></h1>
+<p>Use this break to stretch, rest your eyes, or explore additional 3D modeling details on <a href="https://en.wikipedia.org/wiki/3D_computer_graphics">3D computer graphics</a>.</p>
+<hr />
+<h2 id="creating-a-label-ring-with-a-cylinder-10-minutes"><a class="header" href="#creating-a-label-ring-with-a-cylinder-10-minutes">Creating a Label Ring with a Cylinder (10 minutes)</a></h2>
+<ol>
+<li>
+<p><strong>Adding a Cylinder</strong></p>
+<ul>
+<li><strong>Shortcut Method:</strong>
+<ul>
+<li><kbd>Shift+A</kbd> → <code>Mesh &gt; Cylinder</code>.</li>
+</ul>
+</li>
+<li><strong>GUI Method:</strong>
+<ul>
+<li><code>Add &gt; Mesh &gt; Cylinder</code>.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Isolating with the <code>/</code> (Local View) Key</strong></p>
+<ul>
+<li><strong>Shortcut Method:</strong>
+<ul>
+<li>Select the object, press <kbd>/</kbd> (numpad slash or question-mark key on some keyboards) to isolate.</li>
+</ul>
+</li>
+<li><strong>GUI Method:</strong>
+<ul>
+<li><code>View &gt; Local View &gt; Toggle Local View</code> after selecting.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Deleting both Ends</strong></p>
+<ul>
+<li><strong>Shortcut Method:</strong>
+<ul>
+<li>In <code>Edit Mode</code>, <kbd>3</kbd> (Face Select), select top and bottom faces, <kbd>X</kbd> → <code>Faces</code>.</li>
+</ul>
+</li>
+<li><strong>GUI Method:</strong>
+<ul>
+<li><code>Mesh &gt; Delete &gt; Faces</code>.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Rotating</strong></p>
+<ul>
+<li><strong>Shortcut Method:</strong>
+<ul>
+<li><kbd>R</kbd>, then <kbd>X</kbd> / <kbd>Y</kbd> / <kbd>Z</kbd> for axis constraints.</li>
+</ul>
+</li>
+<li><strong>GUI Method:</strong>
+<ul>
+<li><code>Object &gt; Transform &gt; Rotate</code>.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Exiting Isolation with the <code>/</code> (Local View) Key</strong></p>
+<ul>
+<li><strong>Shortcut Method:</strong>
+<ul>
+<li>Press <kbd>/</kbd> again to exit isolation (Local View).</li>
+</ul>
+</li>
+<li><strong>GUI Method:</strong>
+<ul>
+<li><code>View &gt; Local View &gt; Toggle Local View</code>.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Sizing to the Bottle</strong></p>
+<ul>
+<li><strong>Shortcut Method:</strong>
+<ul>
+<li><kbd>S</kbd> to scale, <kbd>G</kbd> to move.</li>
+</ul>
+</li>
+<li><strong>GUI Method:</strong>
+<ul>
+<li><code>Object &gt; Transform &gt; Scale</code> or <code>Move</code>.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Adjusting Position</strong></p>
+<ul>
+<li><strong>Shortcut Method:</strong>
+<ul>
+<li><kbd>G</kbd>, then <kbd>Z</kbd> (for up/down), etc.</li>
+</ul>
+</li>
+<li><strong>GUI Method:</strong>
+<ul>
+<li><code>Object &gt; Transform &gt; Move</code>.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<hr />
+<h2 id="creating-the-cork-15-minutes"><a class="header" href="#creating-the-cork-15-minutes">Creating the Cork (15 minutes)</a></h2>
+<ol>
+<li>
+<p><strong>Extruding</strong></p>
+<ul>
+<li><strong>Shortcut Method:</strong>
+<ul>
+<li>In <code>Edit Mode</code>, <kbd>E</kbd> to extrude.</li>
+</ul>
+</li>
+<li><strong>GUI Method:</strong>
+<ul>
+<li><code>Mesh &gt; Extrude &gt; Extrude Region</code>.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Loop Cuts</strong></p>
+<ul>
+<li><strong>Shortcut Method:</strong>
+<ul>
+<li><kbd>Ctrl+R</kbd> for a loop cut, scroll to adjust the n</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h2 id="next-week"><a class="header" href="#next-week">Next Week</a></h2>
+<p>Will will be creating and applying textures, placing lighting and setting up the rendering of this wine bottle project.</p>
+<h1 id="downloads"><a class="header" href="#downloads">Downloads</a></h1>
+<h2 id="download-wine-bottle-modelling-demo-blender-file"><a class="header" href="#download-wine-bottle-modelling-demo-blender-file"><a href="dl/WineBottle/WineBottleModellingDemo.zip">Download Wine Bottle Modelling Demo Blender File</a></a></h2>
+<h2 id="download-wine-bottle-blender-file"><a class="header" href="#download-wine-bottle-blender-file"><a href="dl/WineBottle/WineBottle.blend">Download Wine Bottle Blender File</a></a></h2>
+<h2 id="download-image-of-wine-bottle-wireframe"><a class="header" href="#download-image-of-wine-bottle-wireframe"><a href="dl/WineBottle/WineBottleWire.png">Download Image of Wine Bottle Wireframe</a></a></h2>
+<h2 id="download-image-of-final-render-example"><a class="header" href="#download-image-of-final-render-example"><a href="dl/WineBottle/WineBottleRender.png">Download Image of final render example</a></a></h2>
+<h2 id="download-label-image"><a class="header" href="#download-label-image"><a href="dl/WineBottle/Label.png">Download Label Image</a></a></h2>
+<h2 id="download-blender-logo"><a class="header" href="#download-blender-logo"><a href="dl/WineBottle/BlenderLogo.png">Download Blender Logo</a></a></h2>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="u4.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next prefetch" href="downloads.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="u4.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next prefetch" href="downloads.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+        <!-- Livereload script (if served using the cli tool) -->
+        <script>
+            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
+            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
+            const socket = new WebSocket(wsAddress);
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr.min.js"></script>
+        <script src="mark.min.js"></script>
+        <script src="searcher.js"></script>
+
+        <script src="clipboard.min.js"></script>
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </div>
+    </body>
+</html>

@@ -1,0 +1,363 @@
+<!DOCTYPE HTML>
+<html lang="en" class="light sidebar-visible" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Core Concepts - Intro to Blender II</title>
+
+
+        <!-- Custom HTML head -->
+
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="toc.js"></script>
+    </head>
+    <body>
+    <div id="body-container">
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            const html = document.documentElement;
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add("js");
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="toc.html"></iframe>
+            </noscript>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Intro to Blender II</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h2 id="core-concepts"><a class="header" href="#core-concepts">Core Concepts</a></h2>
+<p>Below are several essential concepts we’ll use throughout this booklet. Each concept highlights shortcuts and the corresponding menu paths.</p>
+<ol>
+<li>
+<p><strong>Subdivision Modeling</strong></p>
+<ul>
+<li><strong>Shortcut Method:</strong>
+<ul>
+<li>In <code>Object Mode</code>, press <kbd>Ctrl+2</kbd> (or <kbd>Ctrl+1</kbd>, <kbd>Ctrl+3</kbd>, etc.) to automatically add a Subdivision Surface Modifier with a chosen subdivision level.</li>
+</ul>
+</li>
+<li><strong>GUI Method:</strong>
+<ul>
+<li>Select your object, then go to <code>Properties &gt; Modifiers &gt; Add Modifier &gt; Subdivision Surface</code>.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Solidify Modifier</strong></p>
+<ul>
+<li><strong>Shortcut Method:</strong>
+<ul>
+<li>There’s no direct one-key shortcut to add a Solidify Modifier. However, you can quickly open the Add Modifier menu by pressing <kbd>Ctrl+Tab</kbd> in newer Blender versions (if configured) or simply do the next step:</li>
+</ul>
+</li>
+<li><strong>GUI Method:</strong>
+<ul>
+<li>Select your object, go to <code>Properties &gt; Modifiers &gt; Add Modifier &gt; Solidify</code>, then adjust the <code>Thickness</code>.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Displacement Modifier</strong></p>
+<ul>
+<li><strong>Shortcut Method:</strong>
+<ul>
+<li>Similarly, no default direct shortcut. Recommended approach is to use <kbd>Shift+A</kbd> in the Texture context to quickly add a texture, then reference it in the Displace Modifier.</li>
+</ul>
+</li>
+<li><strong>GUI Method:</strong>
+<ul>
+<li>With your object selected, go to <code>Properties &gt; Modifiers &gt; Add Modifier &gt; Displace</code>. Assign or create a new texture under <code>Texture &gt; New</code>.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Shrinkwrap Modifier</strong></p>
+<ul>
+<li><strong>Shortcut Method:</strong>
+<ul>
+<li>No direct key. Add via quick menu <kbd>F3</kbd> to open the search bar, type <code>Shrinkwrap</code>.</li>
+</ul>
+</li>
+<li><strong>GUI Method:</strong>
+<ul>
+<li>Select your object, then choose <code>Properties &gt; Modifiers &gt; Add Modifier &gt; Shrinkwrap</code>. Pick the target object to wrap onto.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Modifier Application</strong></p>
+<ul>
+<li><strong>Shortcut Method:</strong>
+<ul>
+<li>Select the object, press <kbd>F3</kbd>, type <code>Apply All Modifiers</code>.</li>
+</ul>
+</li>
+<li><strong>GUI Method:</strong>
+<ul>
+<li>Go to <code>Properties &gt; Modifiers</code> and click the <code>Apply</code> button on each modifier.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Mesh Cleanup</strong></p>
+<ul>
+<li><strong>Shortcut Method:</strong>
+<ul>
+<li>In <code>Edit Mode</code>, press <kbd>F3</kbd> and type <code>Merge by Distance</code> or <code>Delete Loose</code> or <code>Limited Dissolve</code>.</li>
+</ul>
+</li>
+<li><strong>GUI Method:</strong>
+<ul>
+<li>In <code>Edit Mode</code>, go to <code>Mesh &gt; Clean Up</code> and choose the required cleanup operation.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Activating and Utilizing Add-ons</strong></p>
+<ul>
+<li><strong>Shortcut Method:</strong>
+<ul>
+<li>In newer Blender versions, press <kbd>F4</kbd>, choose <code>Preferences</code>, and go to the Add-ons tab.</li>
+</ul>
+</li>
+<li><strong>GUI Method:</strong>
+<ul>
+<li>Go to <code>Edit &gt; Preferences &gt; Add-ons</code>. Check the box next to the desired add-on.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Use of Proportional Editing</strong></p>
+<ul>
+<li><strong>Shortcut Method:</strong>
+<ul>
+<li>In <code>Edit Mode</code>, press <kbd>O</kbd> to toggle Proportional Editing on/off.</li>
+<li>Scroll the Mouse Wheel to adjust the falloff radius while transforming.</li>
+</ul>
+</li>
+<li><strong>GUI Method:</strong>
+<ul>
+<li>In <code>Edit Mode</code>, enable Proportional Editing by clicking the small circle icon on the 3D Viewport header.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Creating and Modifying Curves</strong></p>
+<ul>
+<li><strong>Shortcut Method:</strong>
+<ul>
+<li>Press <kbd>Shift+A</kbd> and select <code>Curve &gt; Bezier</code> (or <code>Curve &gt; NURBS</code>).</li>
+<li>To modify, press <kbd>Tab</kbd> to enter <code>Edit Mode</code>, and use <kbd>G</kbd> (move), <kbd>R</kbd> (rotate), <kbd>S</kbd> (scale).</li>
+</ul>
+</li>
+<li><strong>GUI Method:</strong>
+<ul>
+<li>Go to <code>Add &gt; Curve &gt; Bezier/NURBS</code>. Then switch to <code>Edit Mode</code> via <code>Object &gt; Mode &gt; Edit Mode</code>.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="u1b.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next prefetch" href="u1d.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="u1b.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next prefetch" href="u1d.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+        <!-- Livereload script (if served using the cli tool) -->
+        <script>
+            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
+            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
+            const socket = new WebSocket(wsAddress);
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr.min.js"></script>
+        <script src="mark.min.js"></script>
+        <script src="searcher.js"></script>
+
+        <script src="clipboard.min.js"></script>
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </div>
+    </body>
+</html>
