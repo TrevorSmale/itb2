@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>BD - Intro to Blender II</title>
+        <title>Label Image Mapping - Intro to Blender II</title>
 
 
         <!-- Custom HTML head -->
@@ -152,7 +152,58 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="c"><a class="header" href="#c">C</a></h1>
+                        <h2 id="building-our-second-procedural-texture-with-a-mapped-texture"><a class="header" href="#building-our-second-procedural-texture-with-a-mapped-texture">Building Our Second Procedural Texture with a Mapped Texture</a></h2>
+<p>We’ll combine a procedural texture (e.g., for a label background) and a mapped image texture (the label design).</p>
+<p><img src="img/LabelTextureNodes.png" alt="Label Texture Nodes" title="Label Texture Nodes" /></p>
+<h2 id="-download-label-image"><a class="header" href="#-download-label-image"><a href="dl/WineBottle/Label.png">📁 Download Label Image</a></a></h2>
+<hr />
+<ol>
+<li>
+<p><strong>Adding the Image Texture</strong></p>
+<ul>
+<li><strong>Shortcut Method:</strong>
+<ul>
+<li><kbd>Shift+A</kbd> → <code>Texture &gt; Image Texture</code>, then <kbd>Open</kbd> to locate your <code>.png</code> label.</li>
+</ul>
+</li>
+<li><strong>GUI Method:</strong>
+<ul>
+<li><code>Add &gt; Texture &gt; Image Texture</code>, then click <code>Open</code> to browse.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>UV Mapping</strong></p>
+<ul>
+<li><strong>Shortcut Method:</strong>
+<ul>
+<li>In <code>Edit Mode</code>, press <kbd>U</kbd> → <code>Unwrap</code> (or select a projection method).</li>
+</ul>
+</li>
+<li><strong>GUI Method:</strong>
+<ul>
+<li><code>Mesh &gt; UV Unwrap &gt; Unwrap</code> (in <code>Edit Mode</code>).</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Combining with Procedural Nodes</strong></p>
+<ul>
+<li><strong>Shortcut Method:</strong>
+<ul>
+<li><kbd>Shift+A</kbd> to add Mix, ColorRamp, or other blending nodes. Connect the image texture with procedural nodes into the <code>Principled BSDF</code>.</li>
+</ul>
+</li>
+<li><strong>GUI Method:</strong>
+<ul>
+<li><code>Add &gt; Color &gt; MixRGB</code> (or similar). Then connect the outputs accordingly.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
 
                     </main>
 

@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>F - Intro to Blender II</title>
+        <title>Focus Object - Intro to Blender II</title>
 
 
         <!-- Custom HTML head -->
@@ -152,7 +152,41 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="be"><a class="header" href="#be">BE</a></h1>
+                        <h2 id="building-our-fourth-procedural-texture"><a class="header" href="#building-our-fourth-procedural-texture">Building Our Fourth Procedural Texture</a></h2>
+<p>We’ll design a simple backdrop material that might include a noise or gradient.</p>
+<p><img src="img/BackDropTextureNodes.png" alt="Back Drop Texture Nodes" title="Back Drop Texture Nodes" /></p>
+<ol>
+<li>
+<p><strong>Noise or Gradient Setup</strong></p>
+<ul>
+<li><strong>Shortcut Method:</strong>
+<ul>
+<li>In the Shader Editor, <kbd>Shift+A</kbd> → <code>Texture &gt; Noise Texture</code> or <code>Texture &gt; Gradient Texture</code>.</li>
+</ul>
+</li>
+<li><strong>GUI Method:</strong>
+<ul>
+<li><code>Add &gt; Texture &gt; Noise Texture</code> (or <code>Gradient Texture</code>).</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Color Ramp Adjustments</strong></p>
+<ul>
+<li><strong>Shortcut Method:</strong>
+<ul>
+<li><kbd>Shift+A</kbd> → <code>Converter &gt; ColorRamp</code>, connect from noise output → color ramp → shader input.</li>
+</ul>
+</li>
+<li><strong>GUI Method:</strong>
+<ul>
+<li><code>Add &gt; Converter &gt; ColorRamp</code>.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
 
                     </main>
 
@@ -162,7 +196,7 @@
                                 <i class="fa fa-angle-left"></i>
                             </a>
 
-                            <a rel="next prefetch" href="u4.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next prefetch" href="u2h.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
 
@@ -176,7 +210,7 @@
                         <i class="fa fa-angle-left"></i>
                     </a>
 
-                    <a rel="next prefetch" href="u4.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next prefetch" href="u2h.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>
