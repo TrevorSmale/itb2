@@ -1,8 +1,8 @@
 ## Modeling Workshop Session
 
-We will focus on modeling more complex shapes, utilizing modifiers to create natural distortions, and generating sophisticated generative textures. The culmination of these topics will be an aesthetically pleasing rendering of a wine bottle.
+Today, we'll concentrate on creating more intricate forms by using techniques such as proportional editing for seamless feature transitions and applying modifiers for organic deformations. By the end of the session, we'll have our model ready to move on to the texturing phase. Ideally, our model will resemble something along these lines.
 
 ![Wireframe of Wine Bottle Model](img/WineBottleWire.png "Wireframe of Wine Bottle Model")
-![Wireframe of Wine Bottle Model](img/WineBottleRender.png "Wireframe of Wine Bottle Model")
+
 
 
