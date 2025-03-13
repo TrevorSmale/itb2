@@ -1,4 +1,4 @@
-## Creating a Label Ring with a Cylinder (10 minutes)
+## Creating a Label Ring with a Cylinder 
 
 1. **Adding a Cylinder**  
    - **Shortcut Method:**  

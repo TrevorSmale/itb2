@@ -1,4 +1,4 @@
-## Creating the Cork (15 minutes)
+## Creating the Cork 
 
 1. **Extruding**  
    - **Shortcut Method:**  

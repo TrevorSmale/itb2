@@ -8,6 +8,7 @@
   - [Modelling the Bottle](./u1f.md)
   - [Modelling the Label](./u1g.md)
   - [Modelling the Cork](./u1h.md)
+  - [Modelling the String](./u1i.md)
   
 - [Session 2](./u2a.md)
   - [Procedural vs. Image Map](./u2b.md)
@@ -22,7 +23,5 @@
   - [Scene Setup](./u2h.md)
   - [Rendering](./u2i.md) 
 
-- [Unit 2](./u4.md)
-- [Unit 1](./u3.md)
 
 - [Downloads](./downloads.md)

@@ -1,4 +1,4 @@
-## Creating The Bottle (45 minutes)
+## Creating The Bottle 
 
 ### 1. **Creating a Cylinder**  
    - **Shortcut Method:**  
