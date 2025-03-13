@@ -55,31 +55,31 @@
      - In `Edit Mode`, `Right-Click > LoopTools` (if the add-on is enabled).
 
 ### 10. **Proportionally Editing the Bottom**  
-    - **Shortcut Method:**  
-      - Press <kbd>O</kbd> to enable Proportional Editing, then <kbd>G</kbd> to move the bottom vertices. Mouse wheel adjusts radius.  
-    - **GUI Method:**  
-      - Click the Proportional Editing icon in the 3D Viewport header, then move as desired.
+   - **Shortcut Method:**  
+    - Press <kbd>O</kbd> to enable Proportional Editing, then <kbd>G</kbd> to move the bottom vertices. Mouse wheel adjusts radius.  
+   - **GUI Method:**  
+    - Click the Proportional Editing icon in the 3D Viewport header, then move as desired.
 
 ### 11. **Filling an Open Hole**  
-    - **Shortcut Method:**  
-      - In `Edit Mode`, select the open edge loop, press <kbd>F</kbd> to fill.  
-    - **GUI Method:**  
-      - `Mesh > Face > Make Edge/Face`.
+   - **Shortcut Method:**  
+    - In `Edit Mode`, select the open edge loop, press <kbd>F</kbd> to fill.  
+   - **GUI Method:**  
+    - `Mesh > Face > Make Edge/Face`.
 
 ### 12. **Adding and Adjusting Loop-Cuts**  
-    - **Shortcut Method:**  
-      - <kbd>Ctrl+R</kbd> to initiate a loop cut, then move/scroll to place it.  
-    - **GUI Method:**  
-      - `Mesh > Insert > Edge Loop`.
+   - **Shortcut Method:**  
+    - <kbd>Ctrl+R</kbd> to initiate a loop cut, then move/scroll to place it.  
+   - **GUI Method:**  
+    - `Mesh > Insert > Edge Loop`.
 
 ### 13. **Applying a Displacement Modifier**  
-    - **Shortcut Method:**  
-      - Press <kbd>F3</kbd> → `Add Displace Modifier`.  
-    - **GUI Method:**  
-      - `Properties > Modifiers > Add Modifier > Displace`. Adjust texture and strength.
+   - **Shortcut Method:**  
+    - Press <kbd>F3</kbd> → `Add Displace Modifier`.  
+   - **GUI Method:**  
+    - `Properties > Modifiers > Add Modifier > Displace`. Adjust texture and strength.
 
 ### 14. **Using a Texture with the Modifier**  
-    - **Shortcut Method:**  
-      - From the Displace Modifier panel, press <kbd>New</kbd> next to `Texture`, then <kbd>F3</kbd> and type `Open Texture` if you have a file.  
-    - **GUI Method:**  
-      - `Properties > Modifiers > Displace > Texture > New`. Then in the `Texture Properties` tab, choose `Image or Movie` and load your texture.
+   - **Shortcut Method:**  
+    - From the Displace Modifier panel, press <kbd>New</kbd> next to `Texture`, then <kbd>F3</kbd> and type `Open Texture` if you have a file.  
+   - **GUI Method:**  
+    - `Properties > Modifiers > Displace > Texture > New`. Then in the `Texture Properties` tab, choose `Image or Movie` and load your texture.
