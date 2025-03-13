@@ -9,6 +9,9 @@
   - [Modelling the Label](./u1g.md)
   - [Modelling the Cork](./u1h.md)
   - [Modelling the String](./u1i.md)
+  - [Wax Dip](./u1j.md)
+  - [Wax Seal](./u1k.md)
+
   
 - [Session 2](./u2a.md)
   - [Procedural vs. Image Map](./u2b.md)
