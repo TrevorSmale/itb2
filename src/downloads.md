@@ -12,5 +12,5 @@
 
 ## Image Resource Files
 
-### [Download Label Image](img/WineBottle/Label.png)
+### [Download Label Image](img/Label.png)
 ### [Download Blender Logo Image](img/BlenderLogo.png)
