@@ -3,8 +3,7 @@
 We’ll combine a procedural texture (e.g., for a label background) and a mapped image texture (the label design).
 
 ![Label Texture Nodes](img/LabelTextureNodes.png "Label Texture Nodes")
-
-## [📁 Download Label Image](dl/WineBottle/Label.png)  
+![Download Label Image](img/WineBottle/Label.png)
 
 ---
 

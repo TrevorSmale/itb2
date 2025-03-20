@@ -3,8 +3,8 @@
 We’ll create a procedural texture for the red dipped wax.
 
 ![Wax Texture Nodes](img/WaxTextureNodes.png "Wax Texture Nodes")
+![Download Blender Logo Image](img/BlenderLogo.png)
 
- ## [📁 Download Blender Logo](dl/WineBottle/BlenderLogo.png)
  
  ---
  

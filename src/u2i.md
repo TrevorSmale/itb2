@@ -1,13 +1,13 @@
-## Setting up Our Camera (15 minutes)
+## Rendering Out Our Project (15 minutes)
 
-1. **Aligning Camera to View**  
+1. **Render Settings**  
    - **Shortcut Method:**  
-     - Press <kbd>Numpad 0</kbd> to see through the camera. Adjust your viewport, then press <kbd>Ctrl+Alt+Numpad 0</kbd> to align the camera to the current view.  
+     - Press <kbd>F3</kbd>, type `Render Properties`, then adjust `Engine` (Cycles/Eevee), `Samples`, etc.  
    - **GUI Method:**  
-     - `View > Align View > Align Active Camera to View`.
+     - `Properties > Render`, set `Render Engine` and `Sampling`.
 
-2. **Moving the Camera**  
+2. **Final Render**  
    - **Shortcut Method:**  
-     - Press <kbd>G</kbd> while in camera view, then <kbd>Middle Mouse Button</kbd> or <kbd>R</kbd> to rotate.  
+     - Press <kbd>F12</kbd> to render. Press <kbd>F3</kbd> while in the Image Editor to save.  
    - **GUI Method:**  
-     - `Object > Transform > Move` or `Rotate` (ensure camera is selected).
+     - `Render > Render Image`, then `Image > Save As`.

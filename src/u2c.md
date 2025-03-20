@@ -12,13 +12,7 @@
    - **GUI Method:**  
      - Go to `Window > New Workspace` or click the `+` button in the workspace tabs and pick a workspace template (e.g., `Shading`, `Compositing`, etc.).
 
-3. **Downloading Resource Files**  
-   - No direct Blender shortcut.  
-   - Use your web browser or file explorer to download needed resources.  
-   - **GUI Note:**  
-     - In Blender, you can open `File > External Data > Find Missing Files` if you need to relocate downloaded textures.
-
-4. **Creating Blank Textures**  
+3. **Creating Blank Textures**  
    - **Shortcut Method (Shader Editor):**  
      - Switch to `Shader Editor` (<kbd>F3</kbd> and type `Shader Editor` or use the workspace tab).  
      - Press <kbd>Shift+A</kbd> → `Texture > Image Texture`, then click `New` to create a blank image.  

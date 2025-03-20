@@ -1,17 +1,13 @@
-## Building Our Fourth Procedural Texture
+## Setting up Our Focus Object (15 minutes)
 
-We’ll design a simple backdrop material that might include a noise or gradient.
-
-![Back Drop Texture Nodes](img/BackDropTextureNodes.png "Back Drop Texture Nodes")
-
-1. **Noise or Gradient Setup**  
+1. **Depth of Field**  
    - **Shortcut Method:**  
-     - In the Shader Editor, <kbd>Shift+A</kbd> → `Texture > Noise Texture` or `Texture > Gradient Texture`.  
+     - Select the camera, press <kbd>F3</kbd> → `Camera Properties`, type or select the object in the `Focus on Object` field.  
    - **GUI Method:**  
-     - `Add > Texture > Noise Texture` (or `Gradient Texture`).
+     - `Properties > Camera > Depth of Field`, set `Focus Object` to your chosen mesh.
 
-2. **Color Ramp Adjustments**  
+2. **F-Stop/Bokeh**  
    - **Shortcut Method:**  
-     - <kbd>Shift+A</kbd> → `Converter > ColorRamp`, connect from noise output → color ramp → shader input.  
+     - Still in Camera Properties, press <kbd>Tab</kbd> to move between `F-Stop` or `Aperture` fields.  
    - **GUI Method:**  
-     - `Add > Converter > ColorRamp`.
+     - `Properties > Camera > Depth of Field`, adjust `F-Stop`.
